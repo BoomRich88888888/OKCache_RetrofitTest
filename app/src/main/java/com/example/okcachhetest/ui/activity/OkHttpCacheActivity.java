@@ -99,6 +99,7 @@ public class OkHttpCacheActivity extends AppCompatActivity {
     private void initView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(this);
+        //RecyclerViewAdapter横向布局
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(manager);
         adapter = new MyRecyclerAdaper(OkHttpCacheActivity.this, mList);
