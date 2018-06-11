@@ -32,7 +32,6 @@ import okhttp3.Response;
 public class OkHttpCacheActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private List<Bean.ResultBean.DataBean> mList = new ArrayList<>();
-    private MyRecyclerAdaper adaper;
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler(){
         @Override
@@ -45,11 +44,12 @@ public class OkHttpCacheActivity extends AppCompatActivity {
                     Bean bean = gson.fromJson(datas, Bean.class);
                     List<Bean.ResultBean.DataBean> data = bean.getResult().getData();
                     mList.addAll(data);
-                    adaper.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                     break;
             }
         }
     };
+    private MyRecyclerAdaper adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +101,7 @@ public class OkHttpCacheActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(manager);
-        adaper = new MyRecyclerAdaper(OkHttpCacheActivity.this, mList);
-        mRecyclerView.setAdapter(adaper);
+        adapter = new MyRecyclerAdaper(OkHttpCacheActivity.this, mList);
+        mRecyclerView.setAdapter(adapter);
     }
 }
